@@ -16,11 +16,10 @@ public class Transaction {
     @Id
     @GeneratedValue
     private String id;
-    @ManyToOne
-    private Card fuenteCard;
-    @ManyToOne
-    private Card destinoCard;
     private double monto;
     private boolean anulada;
     private LocalDateTime fecha;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_id", nullable = false)
+    private Card card;
 }
