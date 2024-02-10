@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,10 +22,10 @@ import java.util.Set;
 public class Card {
     @Id
     @Column(name = "id_producto")
-    private Long idProducto;
+    private String idProducto;
 
-    @Column(name = "id_card")
-    private Long idCard;
+    @Column(name = "id_tarjeta")
+    private String idTarjeta;
     @Column(name = "tipo_tarjeta")
     private String tipoTarjeta;
     private Integer balance;
@@ -37,8 +38,8 @@ public class Card {
     private Boolean activa;
     @Column(name = "fecha_vencimiento")
     private LocalDate fechaVencimiento;
-    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    private Set<Transaction> transactions = new HashSet<>();
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transaction> transactions = new ArrayList<>();
 
 }
 
