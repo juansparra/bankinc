@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardBalanceRequest {
-    private String cardId;
+    private Long cardId;
     private Integer balance;
 }

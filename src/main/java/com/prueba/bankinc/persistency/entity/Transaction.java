@@ -1,5 +1,6 @@
 package com.prueba.bankinc.persistency.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -15,11 +16,14 @@ import java.time.LocalDateTime;
 public class Transaction {
     @Id
     @GeneratedValue
-    private String id;
-    private double monto;
-    private boolean anulada;
-    private LocalDateTime fecha;
+    private Long id;
+    private Integer price;
+    @Column(name = "is_anulated")
+    private boolean isAnulated;
+    @Column(name = "transaction_date")
+    private LocalDateTime transactionDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id", nullable = false)
+    @JoinColumn(name = "id_card", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Card card;
 }
